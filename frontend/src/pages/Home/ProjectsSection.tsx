@@ -1,7 +1,16 @@
 import { ShoppingCart, Smartphone, Globe, Code, Database, Zap, Star, ArrowRight } from 'lucide-react';
 
+interface Project {
+  icon: React.ElementType;
+  title: string;
+  category: string;
+  description: string;
+  technologies: string[];
+  featured: boolean;
+}
+
 const ProjectsSection = () => {
-  const projects = [
+  const projects: Project[] = [
     {
       icon: ShoppingCart,
       title: 'E-Commerce Platform',
@@ -53,69 +62,114 @@ const ProjectsSection = () => {
   ];
 
   return (
-    <section className="py-20 px-4 bg-slate-50">
+    <section className="py-16 sm:py-20 md:py-24 px-4" style={{ backgroundColor: '#0F172A' }}>
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-[#F1F5F9] to-[#94A3B8] bg-clip-text text-transparent">
             Our Projects
           </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto" style={{ color: '#94A3B8' }}>
             Showcasing our expertise through successful projects delivered to clients across various industries
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, idx) => (
-            <div
-              key={idx}
-              className="group bg-white/60 backdrop-blur-sm border border-white/80 rounded-2xl p-8 hover:border-indigo-500/30 transition-all duration-300 hover:scale-105"
-            >
-              <div className="flex items-center justify-between mb-6">
-                <div className="w-16 h-16 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <project.icon className="text-white" size={32} />
-                </div>
-                {project.featured && (
-                  <div className="flex items-center gap-1 bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-semibold">
-                    <Star size={12} />
-                    Featured
-                  </div>
-                )}
-              </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {projects.map((project, idx) => {
+            const Icon = project.icon;
 
-              <div className="mb-4">
-                <span className="text-sm font-semibold text-indigo-500">{project.category}</span>
-              </div>
+            return (
+              <div
+                key={idx}
+                className="group relative overflow-hidden rounded-2xl transition-all duration-500 hover:scale-105 active:scale-95 hover:shadow-2xl"
+                style={{
+                  background: 'rgba(30, 41, 59, 0.7)',
+                  backdropFilter: 'blur(12px)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                }}
+              >
+                {/* Subtle glow on hover */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-[#14B8A6]/20 to-transparent pointer-events-none" />
 
-              <h3 className="text-2xl font-bold text-slate-900 mb-4">{project.title}</h3>
-              <p className="text-slate-600 leading-relaxed mb-6">
-                {project.description}
-              </p>
-
-              <div className="mb-6">
-                <h4 className="text-slate-900 font-semibold mb-3">Technologies Used:</h4>
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech, techIdx) => (
-                    <span
-                      key={techIdx}
-                      className="bg-indigo-500/20 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium"
+                <div className="relative p-6 sm:p-8">
+                  <div className="flex items-center justify-between mb-5 sm:mb-6">
+                    <div
+                      className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-6"
+                      style={{
+                        background: 'linear-gradient(135deg, #14B8A6, #2DD4BF)',
+                        boxShadow: '0 10px 30px rgba(20, 184, 166, 0.3)',
+                      }}
                     >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
+                      <Icon className="text-white" size={28} />
+                    </div>
+                    {project.featured && (
+                      <div className="flex items-center gap-1 bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-2.5 py-1 rounded-full text-xs font-bold shadow-lg">
+                        <Star size={12} />
+                        Featured
+                      </div>
+                    )}
+                  </div>
 
-              <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 px-6 rounded-xl font-semibold flex items-center justify-center gap-2 transition-all duration-300 shadow-lg shadow-indigo-500/25 hover:shadow-xl hover:shadow-indigo-500/40 hover:scale-105">
-                View Project Details
-                <ArrowRight className="group-hover:translate-x-1 transition-transform" size={16} />
-              </button>
-            </div>
-          ))}
+                  <div className="mb-3">
+                    <span className="text-xs sm:text-sm font-semibold" style={{ color: '#14B8A6' }}>
+                      {project.category}
+                    </span>
+                  </div>
+
+                  <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4" style={{ color: '#F1F5F9' }}>
+                    {project.title}
+                  </h3>
+
+                  <p className="text-sm sm:text-base leading-relaxed mb-5 sm:mb-6" style={{ color: '#94A3B8' }}>
+                    {project.description}
+                  </p>
+
+                  <div className="mb-5 sm:mb-6">
+                    <h4 className="text-sm font-semibold mb-2.5" style={{ color: '#CBD5E1' }}>
+                      Technologies Used:
+                    </h4>
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                      {project.technologies.map((tech, techIdx) => (
+                        <span
+                          key={techIdx}
+                          className="px-2.5 py-1 rounded-full text-xs font-medium transition-all duration-300"
+                          style={{
+                            backgroundColor: 'rgba(20, 184, 166, 0.15)',
+                            color: '#14B8A6',
+                          }}
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <button className="w-full bg-gradient-to-r from-[#14B8A6] to-[#2DD4BF] hover:from-[#2DD4BF] hover:to-[#14B8A6] active:from-[#0d9488] active:to-[#22d3ee] text-white py-3.5 rounded-xl font-semibold flex items-center justify-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-teal-500/40 active:scale-95 min-h-12 text-sm sm:text-base">
+                    View Project Details
+                    <ArrowRight className="group-hover:translate-x-1 transition-transform" size={16} />
+                  </button>
+                </div>
+
+                {/* Bottom accent line */}
+                <div
+                  className="h-1 w-full opacity-0 group-hover:opacity-100 transition-all duration-500"
+                  style={{
+                    background: 'linear-gradient(90deg, transparent, #14B8A6, transparent)',
+                  }}
+                />
+              </div>
+            );
+          })}
         </div>
 
-        <div className="text-center mt-12">
-          <button className="bg-white/80 backdrop-blur-sm border border-slate-200 text-slate-700 px-8 py-3 rounded-xl font-semibold hover:bg-white transition-all duration-300">
+        <div className="text-center mt-12 sm:mt-16">
+          <button
+            className="group bg-slate-800/70 backdrop-blur-sm border border-slate-700 text-slate-300 px-6 sm:px-8 py-3.5 rounded-xl font-semibold hover:bg-slate-800/90 hover:border-[#14B8A6]/50 transition-all duration-300 active:scale-95 min-h-12 text-sm sm:text-base"
+            style={{
+              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
+            }}
+          >
             View All Projects
+            <ArrowRight className="inline ml-2 group-hover:translate-x-1 transition-transform" size={16} />
           </button>
         </div>
       </div>
