@@ -1,97 +1,330 @@
 import DefaultLayout from '../../layouts/DefaultLayout';
 import Button from '../../components/Button';
 import Card from '../../components/Card';
-import { Mail, Phone, MapPin } from 'lucide-react';
-import { FormEvent, useState } from 'react';
+import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, X, Loader2 } from 'lucide-react';
+import { FormEvent, useState, useEffect, useRef } from 'react';
+import { classNames } from '../../utils/helpers';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    subject: '',
     message: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [focusedField, setFocusedField] = useState<string | null>(null);
+  const [messageCharCount, setMessageCharCount] = useState(0);
+  const formRef = useRef<HTMLFormElement>(null);
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
+  const MAX_MESSAGE_LENGTH = 1000;
+
+  useEffect(() => {
+    setMessageCharCount(formData.message.length);
+  }, [formData.message]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    setSubmitStatus('idle');
+    setErrorMessage('');
   };
+
+  const validateForm = () => {
+    if (!formData.name.trim()) return 'Please enter your full name';
+    if (!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email))
+      return 'Please enter a valid email address';
+    if (!formData.subject.trim()) return 'Subject is required';
+    if (formData.message.trim().length < 20)
+      return 'Message must be at least 20 characters to ensure clarity';
+    return null;
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    const validationError = validateForm();
+    if (validationError) {
+      setErrorMessage(validationError);
+      setSubmitStatus('error');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+    setErrorMessage('');
+
+    try {
+      // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      console.log('Contact Form Submitted:', formData);
+
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      setMessageCharCount(0);
+
+      // Auto-scroll to success message
+      setTimeout(() => {
+        document.getElementById('success-message')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 100);
+    } catch (err) {
+      setSubmitStatus('error');
+      setErrorMessage('Failed to send message. Please try again or email us directly.');
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => setSubmitStatus('idle'), 5000);
+    }
+  };
+
+  const contactInfo = [
+    {
+      icon: Mail,
+      title: 'Email Us',
+      gradient: 'from-pink-500 to-purple-600',
+      details: ['hello@yourcompany.in', 'support@yourcompany.in'],
+      link: 'mailto:hello@yourcompany.in',
+      linkText: 'Send Email',
+    },
+    {
+      icon: Phone,
+      title: 'Call Us',
+      gradient: 'from-green-500 to-teal-600',
+      details: ['+91 98765 43210 (IN)', '+1 (555) 123-4567 (Global)'],
+      extra: 'Mon–Fri: 9:30 AM – 6:30 PM IST',
+    },
+    {
+      icon: MapPin,
+      title: 'Visit Our Office',
+      gradient: 'from-orange-500 to-red-600',
+      details: ['3rd Floor, Innov8 Coworking', 'Sector 62, Noida, UP 201301'],
+      extra: 'By appointment only',
+    },
+  ];
 
   return (
     <DefaultLayout>
-      <div className="bg-gradient-to-br from-blue-50 to-white py-16 px-4">
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-5xl font-bold text-gray-900 mb-6">Contact Us</h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Get in touch with our team. We'd love to hear from you.
+      {/* Hero Section - Dark Gradient */}
+      <div className="relative overflow-hidden bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900 py-28 px-4 text-white">
+        <div className="absolute inset-0 bg-black/20 backdrop-blur-sm"></div>
+        <div className="relative z-10 max-w-5xl mx-auto text-center">
+          <h1 className="text-5xl md:text-6xl font-extrabold mb-6 tracking-tight animate-fade-in">
+            Let's Build Together
+          </h1>
+          <p className="text-xl md:text-2xl opacity-90 max-w-3xl mx-auto leading-relaxed">
+            Whether it's a new idea, partnership, or just a quick question — we're here in <span className="font-semibold text-yellow-300">India</span> and ready to help.
           </p>
         </div>
       </div>
 
-      <section className="py-20 px-4">
+      {/* Main Content */}
+      <section className="py-20 px-4 -mt-12">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <h2 className="text-3xl font-bold mb-6">Send us a message</h2>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label className="block text-sm font-semibold mb-2">Name</label>
-                  <input
-                    type="text"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    required
-                  />
+          <div className="grid lg:grid-cols-3 gap-10">
+            {/* Contact Form */}
+            <div className="lg:col-span-2">
+              <Card className="p-8 md:p-10 shadow-2xl bg-white rounded-3xl border-0 overflow-hidden">
+                <div className="flex items-center gap-3 mb-8">
+                  <Send className="w-10 h-10 text-indigo-600" />
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Send us a Message</h2>
                 </div>
 
-                <div>
-                  <label className="block text-sm font-semibold mb-2">Email</label>
-                  <input
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    required
-                  />
-                </div>
+                <form ref={formRef} onSubmit={handleSubmit} className="space-y-7">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
+                        Full Name <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        id="name"
+                        name="name"
+                        type="text"
+                        value={formData.name}
+                        onChange={handleChange}
+                        onFocus={() => setFocusedField('name')}
+                        onBlur={() => setFocusedField(null)}
+                        className={classNames(
+                          'w-full px-5 py-4 bg-gray-50 border rounded-xl focus:outline-none transition-all duration-200',
+                          'focus:ring-4 focus:ring-indigo-300 focus:border-indigo-500',
+                          focusedField === 'name' ? 'ring-4 ring-indigo-300 border-indigo-500' : 'border-gray-200'
+                        )}
+                        placeholder="e.g. Priya Sharma"
+                        required
+                        aria-invalid={submitStatus === 'error' && !formData.name.trim()}
+                      />
+                    </div>
 
-                <div>
-                  <label className="block text-sm font-semibold mb-2">Message</label>
-                  <textarea
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    rows={5}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    required
-                  />
-                </div>
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
+                        Email Address <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        onFocus={() => setFocusedField('email')}
+                        onBlur={() => setFocusedField(null)}
+                        className={classNames(
+                          'w-full px-5 py-4 bg-gray-50 border rounded-xl focus:outline-none transition-all duration-200',
+                          'focus:ring-4 focus:ring-indigo-300 focus:border-indigo-500',
+                          focusedField === 'email' ? 'ring-4 ring-indigo-300 border-indigo-500' : 'border-gray-200'
+                        )}
+                        placeholder="priya@company.com"
+                        required
+                      />
+                    </div>
+                  </div>
 
-                <Button type="submit" size="lg" className="w-full">
-                  Send Message
-                </Button>
-              </form>
+                  <div>
+                    <label htmlFor="subject" className="block text-sm font-semibold text-gray-700 mb-2">
+                      Subject <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      id="subject"
+                      name="subject"
+                      type="text"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-indigo-300 focus:border-indigo-500 transition"
+                      placeholder="e.g. Collaboration Opportunity"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
+                      Your Message <span className="text-red-500">*</span>
+                    </label>
+                    <div className="relative">
+                      <textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        rows={6}
+                        maxLength={MAX_MESSAGE_LENGTH}
+                        className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-indigo-300 focus:border-indigo-500 transition resize-none"
+                        placeholder="Share your thoughts, ideas, or questions... (min 20 characters)"
+                        required
+                      />
+                      <div className="absolute bottom-3 right-4 text-xs text-gray-500">
+                        {messageCharCount}/{MAX_MESSAGE_LENGTH}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Status Messages */}
+                  <div aria-live="polite" className="space-y-3">
+                    {submitStatus === 'success' && (
+                      <div
+                        id="success-message"
+                        className="flex items-center gap-3 text-green-700 bg-green-50 px-5 py-4 rounded-xl border border-green-200 animate-fade-in"
+                      >
+                        <CheckCircle className="w-6 h-6 flex-shrink-0" />
+                        <div>
+                          <p className="font-semibold">Message Sent Successfully!</p>
+                          <p className="text-sm">We'll get back to you within 24 hours (usually faster).</p>
+                        </div>
+                      </div>
+                    )}
+
+                    {submitStatus === 'error' && (
+                      <div className="flex items-center gap-3 text-red-700 bg-red-50 px-5 py-4 rounded-xl border border-red-200 animate-shake">
+                        <AlertCircle className="w-6 h-6 flex-shrink-0" />
+                        <p className="font-medium">{errorMessage}</p>
+                      </div>
+                    )}
+                  </div>
+
+                  <Button
+                    type="submit"
+                    size="lg"
+                    disabled={isSubmitting}
+                    className={classNames(
+                      'w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700',
+                      'text-white font-bold py-5 text-lg rounded-xl shadow-lg transform transition-all duration-300',
+                      'disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none',
+                      !isSubmitting && 'hover:scale-105 hover:shadow-xl'
+                    )}
+                  >
+                    {isSubmitting ? (
+                      <span className="flex items-center justify-center gap-3">
+                        <Loader2 className="animate-spin h-6 w-6" />
+                        Sending Message...
+                      </span>
+                    ) : (
+                      <>
+                        <Send className="w-5 h-5" />
+                        Send Message
+                      </>
+                    )}
+                  </Button>
+                </form>
+              </Card>
             </div>
 
-            <div className="space-y-6">
-              <h2 className="text-3xl font-bold mb-6">Get in touch</h2>
+            {/* Contact Info Sidebar */}
+            <div className="space-y-8">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-8">Other Ways to Connect</h2>
 
-              <Card>
-                <Mail className="w-8 h-8 text-blue-600 mb-2" />
-                <h3 className="font-semibold mb-1">Email</h3>
-                <p className="text-gray-600">contact@company.com</p>
-              </Card>
+              <div className="space-y-6">
+                {contactInfo.map((item, index) => (
+                  <Card
+                    key={item.title}
+                    className={classNames(
+                      'p-8 backdrop-blur-lg bg-white/80 border border-white/30 shadow-xl',
+                      'transition-all duration-400 hover:shadow-2xl hover:-translate-y-2',
+                      'animate-fade-in-up'
+                    )}
+                    style={{ animationDelay: `${index * 100}ms` }}
+                  >
+                    <div className="flex items-start gap-5">
+                      <div className={classNames('p-4 rounded-2xl shadow-lg bg-gradient-to-br', item.gradient)}>
+                        <item.icon className="w-8 h-8 text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-xl font-bold text-gray-800">{item.title}</h3>
+                        {item.details.map((line, i) => (
+                          <p key={i} className="text-gray-600 mt-1 text-sm md:text-base">
+                            {line}
+                          </p>
+                        ))}
+                        {item.extra && <p className="text-xs text-gray-500 mt-2">{item.extra}</p>}
+                        {item.link && (
+                          <a
+                            href={item.link}
+                            className="inline-flex items-center gap-1 text-indigo-600 font-medium hover:underline mt-2 text-sm"
+                          >
+                            {item.linkText} →
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </Card>
+                ))}
+              </div>
 
-              <Card>
-                <Phone className="w-8 h-8 text-blue-600 mb-2" />
-                <h3 className="font-semibold mb-1">Phone</h3>
-                <p className="text-gray-600">+1 (555) 123-4567</p>
-              </Card>
-
-              <Card>
-                <MapPin className="w-8 h-8 text-blue-600 mb-2" />
-                <h3 className="font-semibold mb-1">Office</h3>
-                <p className="text-gray-600">123 Innovation Street, Tech City, TC 12345</p>
-              </Card>
+              {/* Social & Quick CTA */}
+              <div className="mt-12 p-8 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-3xl text-white text-center shadow-xl">
+                <p className="text-lg font-semibold mb-4">Stay Connected</p>
+                <div className="flex justify-center gap-5">
+                  {['Twitter', 'LinkedIn', 'GitHub'].map((platform) => (
+                    <a
+                      key={platform}
+                      href="#"
+                      aria-label={`Follow us on ${platform}`}
+                      className="group w-12 h-12 bg-white/20 backdrop-blur rounded-full flex items-center justify-center font-bold text-lg transition-all hover:scale-125 hover:bg-white/30"
+                    >
+                      {platform[0]}
+                    </a>
+                  ))}
+                </div>
+                <p className="mt-5 text-sm opacity-90">
+                  Current time in India: <span className="font-mono">{new Date().toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit' })}</span>
+                </p>
+              </div>
             </div>
           </div>
         </div>

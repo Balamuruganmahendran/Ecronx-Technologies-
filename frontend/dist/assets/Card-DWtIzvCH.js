@@ -1,0 +1,1 @@
+import{j as a}from"./index-CTBEO4Bm.js";const e=({children:r,className:s="",hover:o=!1})=>a.jsx("div",{className:`bg-white rounded-lg shadow-md p-6 ${o?"transition-transform duration-200 hover:scale-105 hover:shadow-xl":""} ${s}`,children:r});export{e as C};

@@ -1,12 +1,16 @@
 import DefaultLayout from '../../layouts/DefaultLayout';
 import HeroSection from './HeroSection';
-import Features from './Features';
+import SolutionsSection from './SolutionsSection';
+import ProjectsSection from './ProjectsSection';
+import CTASection from './CTASection';
 
 const Home = () => {
   return (
     <DefaultLayout>
       <HeroSection />
-      <Features />
+      <SolutionsSection />
+      <ProjectsSection />
+      <CTASection />
     </DefaultLayout>
   );
 };

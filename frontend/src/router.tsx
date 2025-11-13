@@ -6,10 +6,8 @@ const About = lazy(() => import('./pages/About/About'));
 const Services = lazy(() => import('./pages/Services/Services'));
 const Products = lazy(() => import('./pages/Products/Products'));
 const Careers = lazy(() => import('./pages/Careers/Careers'));
-const BlogList = lazy(() => import('./pages/Blog/BlogList'));
-const BlogDetail = lazy(() => import('./pages/Blog/BlogDetail'));
 const Contact = lazy(() => import('./pages/Contact/Contact'));
-const InnovationLab = lazy(() => import('./pages/InnovationLab/InnovationLab'));
+
 
 interface Route {
   path: string;
@@ -22,10 +20,7 @@ export const routes: Route[] = [
   { path: '/services', element: <Services /> },
   { path: '/products', element: <Products /> },
   { path: '/careers', element: <Careers /> },
-  { path: '/blog', element: <BlogList /> },
-  { path: '/blog/:id', element: <BlogDetail /> },
   { path: '/contact', element: <Contact /> },
-  { path: '/innovation-lab', element: <InnovationLab /> },
 ];
 
 export const RouteWrapper = ({ children }: { children: React.ReactNode }) => (
