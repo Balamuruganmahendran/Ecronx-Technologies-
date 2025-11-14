@@ -149,7 +149,7 @@ const Footer = () => {
 
         <div className="border-t border-white/50 mt-8 pt-8 text-center">
           <p className="text-gray-700 bg-white/30 backdrop-blur-sm inline-block px-6 py-2 rounded-full border border-white/50">
-            &copy; {new Date().getFullYear()} Company Name. All rights reserved.
+            &copy; {new Date().getFullYear()} Ecronx Technology Pvt Ltd  All rights reserved.  Designed by Balamurugan Mahendran.
           </p>
         </div>
       </div>

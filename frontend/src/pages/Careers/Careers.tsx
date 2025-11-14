@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { MapPin, Briefcase, Clock, DollarSign, Users, Heart, Zap, Trophy, Code, Palette, TrendingUp, Settings, Search, Filter, X, ArrowRight, CheckCircle, Globe, Coffee, Laptop, Plane } from 'lucide-react';
 import DefaultLayout from '../../layouts/DefaultLayout';
 
@@ -81,6 +82,7 @@ const JobCard = ({ job, onClick }) => {
 };
 
 const Careers = () => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDepartment, setSelectedDepartment] = useState('all');
   const [selectedLocation, setSelectedLocation] = useState('all');
@@ -597,7 +599,10 @@ const Careers = () => {
 
               {/* Modal CTA */}
               <div className="flex gap-4 pt-6 mt-6 border-t border-gray-200">
-                <button className="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition-colors">
+                <button
+                  onClick={() => navigate('/apply', { state: selectedJob })}
+                  className="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition-colors"
+                >
                   Apply Now
                 </button>
                 <button className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-lg font-bold hover:bg-gray-50 transition-colors">
