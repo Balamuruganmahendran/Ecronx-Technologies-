@@ -44,7 +44,7 @@ const CTASection = () => {
                 <h3 className="text-lg sm:text-xl font-bold mb-1.5 sm:mb-2" style={{ color: '#FFFFFF' }}>Chat on WhatsApp</h3>
                 <p className="text-xs sm:text-sm mb-4 sm:mb-5 opacity-80" style={{ color: '#E2E8F0' }}>Instant reply • 24/7</p>
                 <a
-                  href="https://wa.me/919842724034"
+                  href="https://wa.me/8438829844"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full bg-green-500 hover:bg-green-400 active:bg-green-600 text-white py-3.5 rounded-lg font-semibold text-sm transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2 min-h-12"
