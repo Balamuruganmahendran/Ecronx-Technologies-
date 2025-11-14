@@ -72,9 +72,9 @@ const CTASection = () => {
                     <Phone className="text-white" size={26} />
                   </div>
                   <h3 className="text-lg sm:text-xl font-bold mb-1.5 sm:mb-2" style={{ color: '#FFFFFF' }}>Call Us Directly</h3>
-                  <p className="text-base sm:text-lg font-bold mb-5 sm:mb-6" style={{ color: '#E0AAFF' }}>+91 98427 24034</p>
+                  <p className="text-base sm:text-lg font-bold mb-5 sm:mb-6" style={{ color: '#E0AAFF' }}>+91 8438829844</p>
                   <a
-                    href="tel:+919842724034"
+                    href="tel:+91 8438829844"
                     className="w-full bg-gradient-to-r from-[#C084FC] to-[#A855F7] hover:from-[#D8B4FE] hover:to-[#C084FC] active:from-[#B197FC] active:to-[#A855F7] text-white py-3.5 rounded-lg font-bold text-sm transition-all shadow-xl hover:shadow-2xl hover:shadow-purple-500/50 flex items-center justify-center gap-2 backdrop-blur-sm min-h-12"
                   >
                     Call Now
