@@ -103,6 +103,7 @@ const servicesData = [
       { step: 'Testing & Handoff', duration: '3-5 days', description: 'User testing and deployment' },
     ],
   },
+
   {
     id: 4,
     icon: Bot,
