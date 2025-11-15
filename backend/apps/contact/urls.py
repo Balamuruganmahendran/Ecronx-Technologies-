@@ -1,8 +1,9 @@
+# contact/urls.py
 from django.urls import path
-from .views import ContactSubmissionCreateView
+from .views import ContactAPIView
 
 app_name = 'contact'
 
 urlpatterns = [
-    path('submit/', ContactSubmissionCreateView.as_view(), name='submit'),
+    path('', ContactAPIView.as_view(), name='contact-api'),
 ]

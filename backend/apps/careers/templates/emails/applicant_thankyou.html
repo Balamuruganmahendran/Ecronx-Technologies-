@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Thank You for Applying</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; }
+        .container { max-width: 600px; margin: 0 auto; background: #ffffff; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px 20px; text-align: center; }
+        .content { padding: 40px 20px; }
+        .section { margin-bottom: 30px; }
+        .highlight { background: #f8f9ff; padding: 20px; border-radius: 8px; border-left: 4px solid #667eea; }
+        .job-title { font-size: 24px; font-weight: bold; color: #667eea; margin: 10px 0; }
+        .checklist { background: #f0f8ff; padding: 20px; border-radius: 8px; margin: 20px 0; }
+        .checklist h3 { color: #2563eb; margin-top: 0; }
+        .checklist ul { margin: 10px 0; padding-left: 20px; }
+        .checklist li { margin: 8px 0; }
+        .footer { background: #1f2937; color: white; padding: 30px 20px; text-align: center; }
+        .contact-info { background: #e8f4fd; padding: 20px; border-radius: 8px; margin: 20px 0; }
+        .contact-info h3 { color: #2563eb; margin-top: 0; }
+        .button { display: inline-block; background: #667eea; color: white; padding: 12px 30px; text-decoration: none; border-radius: 6px; margin: 10px 5px; }
+        .button:hover { background: #5a67d8; }
+        .important { background: #fff3cd; border: 1px solid #ffeaa7; padding: 15px; border-radius: 6px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎉 Thank You for Applying!</h1>
+            <p>We're excited to receive your application</p>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2>Hello {{ app.first_name }},</h2>
+                <p>Thank you for taking the time to apply for the <strong class="job-title">{{ app.job_title }}</strong> position at Ecron Technologies. We truly appreciate your interest in joining our team!</p>
+            </div>
+
+            <div class="highlight">
+                <h3>📋 What Happens Next?</h3>
+                <p>Our recruitment team will carefully review your application, including your resume and any additional materials you've provided. We'll be in touch within 3-5 business days with an update on your application status.</p>
+            </div>
+
+            <div class="checklist">
+                <h3>✅ Application Checklist</h3>
+                <ul>
+                    <li><strong>Resume:</strong> ✓ Received and attached to your application</li>
+                    {% if app.cover_letter_text or app.cover_letter_file %}
+                    <li><strong>Cover Letter:</strong> ✓ Received and reviewed</li>
+                    {% endif %}
+                    <li><strong>Professional Links:</strong> ✓ Noted for reference</li>
+                    <li><strong>Contact Information:</strong> ✓ Verified and stored securely</li>
+                </ul>
+            </div>
+
+            <div class="important">
+                <h3>📅 Important Interview Preparation</h3>
+                <ul>
+                    <li><strong>Dress Code:</strong> Business casual attire is recommended for interviews</li>
+                    <li><strong>Documents to Bring:</strong> Please bring a copy of your resume and any relevant certificates</li>
+                    <li><strong>Interview Format:</strong> Most interviews are conducted virtually via video call</li>
+                    <li><strong>Preparation:</strong> Be ready to discuss your experience and why you're interested in this role</li>
+                </ul>
+            </div>
+
+            <div class="contact-info">
+                <h3>📞 Need to Get in Touch?</h3>
+                <p>If you have any questions about your application or need to update your information, please don't hesitate to contact us:</p>
+                <p><strong>Email:</strong> careers@ecrontechnologies.com</p>
+                <p><strong>Phone:</strong> +91 8438829844</p>
+                <p><strong>Subject Line:</strong> "Application Follow-up: {{ app.job_title }}"</p>
+            </div>
+
+            <div class="section">
+                <h3>🚀 Why Ecron Technologies?</h3>
+                <p>We're a growing technology company focused on innovation and excellence. Joining our team means being part of exciting projects, continuous learning opportunities, and a supportive work environment.</p>
+            </div>
+
+            <div class="section" style="text-align: center;">
+                <p>We wish you the best of luck with your application!</p>
+                <p><em>The Ecron Technologies Recruitment Team</em></p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>Ecron Technologies</strong></p>
+            <p>Building the future, one innovation at a time</p>
+            <p>📧 ecrontechnologies@gmail.com | 📱 +91 8438829844</p>
+            <p style="font-size: 12px; margin-top: 20px;">
+                This is an automated email. Please do not reply directly to this message.<br>
+                If you no longer wish to receive emails from us, please contact our support team.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

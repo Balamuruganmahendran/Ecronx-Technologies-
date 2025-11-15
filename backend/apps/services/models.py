@@ -1,5 +1,5 @@
 from django.db import models
-from apps.core.models import TimeStampedModel
+from apps.home.models import TimeStampedModel
 
 
 class Service(TimeStampedModel):

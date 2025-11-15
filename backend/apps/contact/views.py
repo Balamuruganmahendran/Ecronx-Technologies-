@@ -1,25 +1,52 @@
-from rest_framework import generics, status
+# contact/views.py
+from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.permissions import AllowAny
-from .models import ContactSubmission
-from .serializers import ContactSubmissionSerializer
+from rest_framework import status
+from django.core.mail import send_mail
+from django.conf import settings
+from .models import ContactMessage
+from .serializers import ContactMessageSerializer
 
+class ContactAPIView(APIView):
+    def post(self, request):
+        serializer = ContactMessageSerializer(data=request.data)
+        if not serializer.is_valid():
+            return Response({
+                'error': 'Validation failed',
+                'details': serializer.errors
+            }, status=status.HTTP_400_BAD_REQUEST)
 
-class ContactSubmissionCreateView(generics.CreateAPIView):
-    """
-    Submit a contact form.
-    """
-    queryset = ContactSubmission.objects.all()
-    serializer_class = ContactSubmissionSerializer
-    permission_classes = [AllowAny]
+        # Save to DB
+        message = serializer.save()
 
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
-        headers = self.get_success_headers(serializer.data)
-        return Response(
-            {'message': 'Your message has been sent successfully. We will get back to you soon!'},
-            status=status.HTTP_201_CREATED,
-            headers=headers
-        )
+        # Send Email
+        try:
+            subject = f"New Contact: {message.subject}"
+            body = f"""
+            You have a new contact form submission:
+
+            Name: {message.name}
+            Email: {message.email}
+            Subject: {message.subject}
+
+            Message:
+            {message.message}
+
+            ---
+            Sent via Ecronx Contact Form
+            """
+            send_mail(
+                subject=subject,
+                message=body,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=['ecrontechnologies@gmail.com'],
+                fail_silently=False,
+            )
+        except Exception as e:
+            # Log error but don't fail the form
+            print(f"Email failed: {e}")
+
+        return Response({
+            'success': True,
+            'message': 'Message sent successfully!'
+        }, status=status.HTTP_201_CREATED)
