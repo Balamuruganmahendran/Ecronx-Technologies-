@@ -335,8 +335,11 @@
 
 // export default Contact;
 
+
+'use client';
+
 import DefaultLayout from '../../layouts/DefaultLayout';
-import { useState, useEffect, useRef, FormEvent } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Mail,
   Phone,
@@ -351,39 +354,28 @@ import {
   Globe,
 } from 'lucide-react';
 
-interface CardProps {
-  children: React.ReactNode;
-  className?: string;
-  hover?: boolean;
-  style?: React.CSSProperties;
-}
-
-const Card: React.FC<CardProps> = ({ children, className = '', hover, style }) => (
+// Reusable Card & Button (unchanged)
+const Card: React.FC<{ children: React.ReactNode; className?: string; hover?: boolean }> = ({
+  children,
+  className = '',
+  hover,
+}) => (
   <div
     className={`bg-white rounded-xl shadow-lg p-6 transition-all duration-300 ${
       hover ? 'hover:shadow-2xl hover:-translate-y-2' : ''
     } ${className}`}
-    style={style}
   >
     {children}
   </div>
 );
 
-interface ButtonProps {
+const Button: React.FC<{
   children: React.ReactNode;
   className?: string;
   type?: 'button' | 'submit' | 'reset';
   disabled?: boolean;
   onClick?: () => void;
-}
-
-const Button: React.FC<ButtonProps> = ({
-  children,
-  className = '',
-  type = 'button',
-  disabled = false,
-  onClick,
-}) => {
+}> = ({ children, className = '', type = 'button', disabled = false, onClick }) => {
   return (
     <button
       type={type}
@@ -432,6 +424,7 @@ const Contact = () => {
     return null;
   };
 
+  // Updated: Real API call to Django
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const validationError = validateForm();
@@ -446,18 +439,30 @@ const Contact = () => {
     setErrorMessage('');
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      console.log('Contact Form Submitted:', formData);
+      const res = await fetch('http://127.0.0.1:8000/api/contact/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || data.details?.[0] || 'Failed to send message');
+      }
+
+      // Success from Django
       setSubmitStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
       setMessageCharCount(0);
-    } catch (err) {
+    } catch (err: any) {
       setSubmitStatus('error');
-      setErrorMessage('Failed to send message. Please try again.');
+      setErrorMessage(err.message || 'Network error. Please try again.');
     } finally {
       setIsSubmitting(false);
-      setTimeout(() => setSubmitStatus('idle'), 5000);
+      setTimeout(() => setSubmitStatus('idle'), 6000);
     }
   };
 
@@ -489,7 +494,7 @@ const Contact = () => {
   return (
     <DefaultLayout>
       <div className="min-h-screen bg-gray-50">
-        {/* Hero Section */}
+        {/* Hero */}
         <div className="bg-gradient-to-br from-blue-50 to-white py-16 px-4">
           <div className="max-w-7xl mx-auto text-center">
             <div className="flex items-center justify-center gap-3 mb-4">
@@ -674,7 +679,7 @@ const Contact = () => {
                 </Card>
               </div>
 
-              {/* Contact Info Sidebar */}
+              {/* Sidebar */}
               <div className="space-y-8">
                 <h2 className="text-3xl font-bold text-gray-900">Other Ways to Connect</h2>
 
@@ -688,9 +693,7 @@ const Contact = () => {
                         <div className="flex-1">
                           <h3 className="text-lg font-bold text-gray-900 mb-2">{item.title}</h3>
                           {item.details.map((line, i) => (
-                            <p key={i} className="text-gray-600 text-sm mb-1">
-                              {line}
-                            </p>
+                            <p key={i} className="text-gray-600 text-sm mb-1">{line}</p>
                           ))}
                           {item.extra && <p className="text-xs text-gray-500 mt-2">{item.extra}</p>}
                           {item.link && (
@@ -707,7 +710,6 @@ const Contact = () => {
                   ))}
                 </div>
 
-                {/* Social & Info Card */}
                 <Card className="p-8 bg-gradient-to-br from-blue-600 to-purple-600 text-white text-center">
                   <p className="text-lg font-semibold mb-4">Stay Connected</p>
                   <div className="flex justify-center gap-4 mb-5">
@@ -721,7 +723,13 @@ const Contact = () => {
                     ))}
                   </div>
                   <p className="text-sm opacity-90">
-                    Current time in India: <span className="font-mono">{new Date().toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit' })}</span>
+                    Current time in India: <span className="font-mono">
+                      {new Date().toLocaleTimeString('en-IN', {
+                        timeZone: 'Asia/Kolkata',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                      })}
+                    </span>
                   </p>
                 </Card>
               </div>

@@ -130,11 +130,54 @@ const GetInfo = ({ jobTitle = "Software Engineer", onBack }: GetInfoProps) => {
 
     setIsSubmitting(true);
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    try {
+      const formDataToSend = new FormData();
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+      // Add all form fields
+      formDataToSend.append('first_name', formData.firstName);
+      formDataToSend.append('last_name', formData.lastName);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('phone', formData.phone);
+      formDataToSend.append('location', formData.location);
+      formDataToSend.append('job_title', displayJobTitle);
+      formDataToSend.append('current_job_title', formData.currentJobTitle);
+      formDataToSend.append('years_of_experience', formData.yearsOfExperience);
+      formDataToSend.append('expected_salary', formData.expectedSalary);
+      formDataToSend.append('notice_period', formData.noticePeriod);
+      formDataToSend.append('linkedin_url', formData.linkedinUrl);
+      formDataToSend.append('portfolio_url', formData.portfolioUrl);
+      formDataToSend.append('github_url', formData.githubUrl);
+      formDataToSend.append('how_did_you_hear', formData.howDidYouHear);
+      formDataToSend.append('available_start_date', formData.availableStartDate);
+      formDataToSend.append('willing_to_relocate', formData.willingToRelocate);
+      formDataToSend.append('requires_sponsorship', formData.requiresSponsorship);
+      formDataToSend.append('cover_letter_text', formData.coverLetter);
+
+      // Add files
+      if (resume) {
+        formDataToSend.append('resume', resume);
+      }
+      if (coverLetterFile) {
+        formDataToSend.append('cover_letter_file', coverLetterFile);
+      }
+
+      const response = await fetch('http://127.0.0.1:8000/api/careers/applications/', {
+        method: 'POST',
+        body: formDataToSend,
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to submit application');
+      }
+
+      setIsSubmitted(true);
+    } catch (error: any) {
+      setErrors({ submit: error.message || 'Failed to submit application. Please try again.' });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (isSubmitted) {
