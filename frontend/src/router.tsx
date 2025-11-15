@@ -34,6 +34,7 @@ import Loader from './components/Loader';
 const Home = lazy(() => import('./pages/Home/Home'));
 const About = lazy(() => import('./pages/About/About'));
 const Services = lazy(() => import('./pages/Services/Services'));
+const ServiceDetail = lazy(() => import('./pages/Services/ServiceDetail'));
 const Products = lazy(() => import('./pages/Products/Products'));
 const Careers = lazy(() => import('./pages/Careers/Careers'));
 const Contact = lazy(() => import('./pages/Contact/Contact'));
@@ -48,6 +49,7 @@ export const routes: Route[] = [
   { path: '/', element: <Home /> },
   { path: '/about', element: <About /> },
   { path: '/services', element: <Services /> },
+  { path: '/services/:id', element: <ServiceDetail /> },
   { path: '/products', element: <Products /> },
   { path: '/careers', element: <Careers /> },
   { path: '/contact', element: <Contact /> },
