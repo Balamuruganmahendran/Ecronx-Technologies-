@@ -19,6 +19,7 @@ import {
   DollarSign,
 } from 'lucide-react';
 
+
 /* --------------------------------------------------------------
    1. QUOTE MODAL – RESPONSIVE & NO LINES
    -------------------------------------------------------------- */
@@ -547,24 +548,24 @@ const StartProjectModal = ({
 };
 
 /* --------------------------------------------------------------
-   3. MAIN LANDING PAGE (unchanged layout, only minor tweaks)
+   3. MAIN LANDING PAGE – NOW WITH NAVBAR & UNIFIED MODAL STATE
    -------------------------------------------------------------- */
 export default function LandingPage() {
   const [quoteOpen, setQuoteOpen] = useState(false);
   const [quotePlan, setQuotePlan] = useState('');
-  const [projectOpen, setProjectOpen] = useState(false);
+  const [isStartProjectOpen, setIsStartProjectOpen] = useState(false); // Unified state
 
   const openQuote = (plan: string) => {
     setQuotePlan(plan);
     setQuoteOpen(true);
   };
   const closeQuote = () => setQuoteOpen(false);
-  const openProject = () => setProjectOpen(true);
-  const closeProject = () => setProjectOpen(false);
 
   return (
     <>
       <div className="min-h-screen bg-[#0F172A]">
+
+
         {/* HERO */}
         <section className="relative overflow-hidden py-16 px-4 sm:py-20 md:py-24 lg:py-28 min-h-screen flex items-center">
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -604,7 +605,7 @@ export default function LandingPage() {
 
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                   <button
-                    onClick={openProject}
+                    onClick={() => setIsStartProjectOpen(true)}
                     className="group bg-teal-500 hover:bg-[#2DD4BF] text-white px-6 py-3.5 sm:px-8 sm:py-4 rounded-xl font-semibold flex items-center justify-center gap-2 transition-all duration-300 shadow-lg shadow-teal-500/30 hover:shadow-xl hover:shadow-teal-500/50 hover:scale-105 text-sm sm:text-base min-h-12"
                   >
                     Start Your Project
@@ -965,12 +966,12 @@ export default function LandingPage() {
       {/* MODALS */}
       <QuoteModal isOpen={quoteOpen} onClose={closeQuote} plan={quotePlan} />
       <StartProjectModal
-        isOpen={projectOpen}
-        onClose={closeProject}
+        isOpen={isStartProjectOpen}
+        onClose={() => setIsStartProjectOpen(false)}
       />
 
       {/* ANIMATIONS */}
-      <style jsx>{`
+      <style>{`
         @keyframes fadeIn {
           from { opacity: 0; }
           to { opacity: 1; }
