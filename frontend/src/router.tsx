@@ -33,6 +33,12 @@ import Loader from './components/Loader';
 
 const Home = lazy(() => import('./pages/Home/Home'));
 const About = lazy(() => import('./pages/About/About'));
+const AboutEcronx = lazy(() => import('./pages/About/AboutEcronx'));
+const ValueProposition = lazy(() => import('./pages/About/ValueProposition'));
+const Mission = lazy(() => import('./pages/About/Mission'));
+const Vision = lazy(() => import('./pages/About/Vision'));
+const PrivacyPolicy = lazy(() => import('./pages/About/PrivacyPolicy'));
+const TermsOfUse = lazy(() => import('./pages/About/TermsOfUse'));
 const Services = lazy(() => import('./pages/Services/Services'));
 const ServiceDetail = lazy(() => import('./pages/Services/ServiceDetail'));
 const Products = lazy(() => import('./pages/Products/Products'));
@@ -48,6 +54,12 @@ interface Route {
 export const routes: Route[] = [
   { path: '/', element: <Home /> },
   { path: '/about', element: <About /> },
+  { path: '/about-ecronx', element: <AboutEcronx /> },
+  { path: '/value-proposition', element: <ValueProposition /> },
+  { path: '/mission', element: <Mission /> },
+  { path: '/vision', element: <Vision /> },
+  { path: '/privacy-policy', element: <PrivacyPolicy /> },
+  { path: '/terms-of-use', element: <TermsOfUse /> },
   { path: '/services', element: <Services /> },
   { path: '/services/:id', element: <ServiceDetail /> },
   { path: '/products', element: <Products /> },
