@@ -73,14 +73,14 @@ const ProjectsSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {projects.map((project, idx) => {
             const Icon = project.icon;
 
             return (
               <div
                 key={idx}
-                className="group relative overflow-hidden rounded-2xl transition-all duration-500 hover:scale-105 active:scale-95 hover:shadow-2xl"
+                className="group relative overflow-hidden rounded-2xl transition-all duration-500 hover:scale-105 active:scale-95 hover:shadow-2xl touch-manipulation"
                 style={{
                   background: 'rgba(30, 41, 59, 0.7)',
                   backdropFilter: 'blur(12px)',
@@ -90,48 +90,48 @@ const ProjectsSection = () => {
                 {/* Subtle glow on hover */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-[#14B8A6]/20 to-transparent pointer-events-none" />
 
-                <div className="relative p-6 sm:p-8">
-                  <div className="flex items-center justify-between mb-5 sm:mb-6">
+                <div className="relative p-4 sm:p-6">
+                  <div className="flex items-center justify-between mb-4 sm:mb-5">
                     <div
-                      className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-6"
+                      className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-6"
                       style={{
                         background: 'linear-gradient(135deg, #14B8A6, #2DD4BF)',
                         boxShadow: '0 10px 30px rgba(20, 184, 166, 0.3)',
                       }}
                     >
-                      <Icon className="text-white" size={28} />
+                      <Icon className="text-white" size={24} />
                     </div>
                     {project.featured && (
-                      <div className="flex items-center gap-1 bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-2.5 py-1 rounded-full text-xs font-bold shadow-lg">
-                        <Star size={12} />
+                      <div className="flex items-center gap-1 bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-2 py-1 rounded-full text-xs font-bold shadow-lg">
+                        <Star size={10} />
                         Featured
                       </div>
                     )}
                   </div>
 
-                  <div className="mb-3">
-                    <span className="text-xs sm:text-sm font-semibold" style={{ color: '#14B8A6' }}>
+                  <div className="mb-2">
+                    <span className="text-xs font-semibold" style={{ color: '#14B8A6' }}>
                       {project.category}
                     </span>
                   </div>
 
-                  <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4" style={{ color: '#F1F5F9' }}>
+                  <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3" style={{ color: '#F1F5F9' }}>
                     {project.title}
                   </h3>
 
-                  <p className="text-sm sm:text-base leading-relaxed mb-5 sm:mb-6" style={{ color: '#94A3B8' }}>
+                  <p className="text-xs sm:text-sm leading-relaxed mb-4 sm:mb-5" style={{ color: '#94A3B8' }}>
                     {project.description}
                   </p>
 
-                  <div className="mb-5 sm:mb-6">
-                    <h4 className="text-sm font-semibold mb-2.5" style={{ color: '#CBD5E1' }}>
+                  <div className="mb-4 sm:mb-5">
+                    <h4 className="text-xs font-semibold mb-2" style={{ color: '#CBD5E1' }}>
                       Technologies Used:
                     </h4>
-                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                    <div className="flex flex-wrap gap-1">
                       {project.technologies.map((tech, techIdx) => (
                         <span
                           key={techIdx}
-                          className="px-2.5 py-1 rounded-full text-xs font-medium transition-all duration-300"
+                          className="px-2 py-1 rounded-full text-xs font-medium transition-all duration-300"
                           style={{
                             backgroundColor: 'rgba(20, 184, 166, 0.15)',
                             color: '#14B8A6',
@@ -143,9 +143,9 @@ const ProjectsSection = () => {
                     </div>
                   </div>
 
-                  <button className="w-full bg-gradient-to-r from-[#14B8A6] to-[#2DD4BF] hover:from-[#2DD4BF] hover:to-[#14B8A6] active:from-[#0d9488] active:to-[#22d3ee] text-white py-3.5 rounded-xl font-semibold flex items-center justify-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-teal-500/40 active:scale-95 min-h-12 text-sm sm:text-base">
+                  <button className="w-full bg-gradient-to-r from-[#14B8A6] to-[#2DD4BF] hover:from-[#2DD4BF] hover:to-[#14B8A6] active:from-[#0d9488] active:to-[#22d3ee] text-white py-3 rounded-xl font-semibold flex items-center justify-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-teal-500/40 active:scale-95 min-h-10 text-sm touch-manipulation">
                     View Project Details
-                    <ArrowRight className="group-hover:translate-x-1 transition-transform" size={16} />
+                    <ArrowRight className="group-hover:translate-x-1 transition-transform" size={14} />
                   </button>
                 </div>
 

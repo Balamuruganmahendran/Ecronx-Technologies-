@@ -584,7 +584,7 @@ export default function LandingPage() {
                 </div>
 
                 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-                  <span className="text-slate-100">Empowering Digital </span>
+                  <span className="text-slate-100">Building innovative </span>
                   <span
                     style={{
                       background:
@@ -594,14 +594,14 @@ export default function LandingPage() {
                       backgroundClip: 'text',
                     }}
                   >
-                    Excellence
+                     solutions for the future.
                   </span>
                 </h1>
 
                 <p className="text-base sm:text-lg md:text-xl leading-relaxed text-slate-400">
-                  Ecronx Technologies — a next-generation IT services company
-                  delivering end-to-end Software Development, Web Engineering,
-                  and AI-powered digital solutions.
+                  Ecronx Technologies — a next-gen IT services Company
+                  delivering end-to-end full-stack software development, advanced web engineering,
+                  and AI-powered digital innovation.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -665,15 +665,15 @@ export default function LandingPage() {
                       },
                       {
                         icon: Rocket,
-                        title: 'Mobile Apps (iOS & Android)',
-                        desc: 'Flutter & Native',
-                        badge: 'Native Performance',
+                        title: 'Software Engineering',
+                        desc: 'Full-Stack Development',
+                        badge: 'High-Performance Architecture',
                       },
                       {
                         icon: TrendingUp,
-                        title: 'SEO & Digital Marketing',
-                        desc: 'Google Partner Agency',
-                        badge: 'Top Rankings',
+                        title: 'Client-Dedicated Builder',
+                        desc: 'Personalized Engineering Support',
+                        badge: 'Exclusive, Focused Delivery',
                       },
                     ].map((item, i) => (
                       <div
@@ -718,7 +718,7 @@ export default function LandingPage() {
                 Our Core Expertise
               </h2>
               <p className="text-base sm:text-lg md:text-xl max-w-2xl mx-auto text-slate-400">
-                Full-stack digital solutions trusted by businesses in Salem,
+                Providing enterprise-class IT solutions, headquartered in Alandur, Chennai
                 Tamil Nadu & across India
               </p>
             </div>
@@ -726,18 +726,18 @@ export default function LandingPage() {
               {[
                 {
                   icon: Palette,
-                  title: 'Stunning Web Design',
-                  desc: 'Pixel-perfect, responsive websites that convert visitors into customers.',
+                  title: 'Frontend development',
+                  desc: 'Delivering responsive, high-performance interfaces engineered for seamless user experiences across all devices.',
                 },
                 {
                   icon: Rocket,
-                  title: 'Mobile App Development',
-                  desc: 'Native & Cross-platform apps (Flutter) for Android & iOS.',
+                  title: 'Full-Stack Engineering',
+                  desc: 'Architecting end-to-end digital ecosystems with scalable backends, secure APIs, and robust frontend frameworks.',
                 },
                 {
                   icon: TrendingUp,
-                  title: 'Result-Driven SEO & Ads',
-                  desc: 'Rank #1 on Google. Certified Google Ads & SEO experts.',
+                  title: 'IT Consulting',
+                  desc: 'Providing strategic technology advisory to optimize infrastructure, modernize systems, and align IT investments with long-term business growth.',
                 },
               ].map((item, i) => {
                 const Icon = item.icon;
@@ -944,8 +944,8 @@ export default function LandingPage() {
                 Ready to Grow Your Business Online?
               </h2>
               <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 max-w-2xl mx-auto text-slate-400">
-                Join 1500+ happy clients who trusted Ecronx Technologies
-                (formerly Sigma Computers) since 1995.
+                Providing enterprise-class IT solutions, headquartered in Alandur, Chennai
+                Tamil Nadu & across India
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                 <button className="group bg-teal-500 hover:bg-[#2DD4BF] text-white px-6 py-3.5 sm:px-8 sm:py-4 rounded-xl font-semibold flex items-center justify-center gap-2 transition-all duration-300 shadow-lg shadow-teal-500/30 hover:shadow-xl hover:shadow-teal-500/50 hover:scale-105 text-sm sm:text-base min-h-12">

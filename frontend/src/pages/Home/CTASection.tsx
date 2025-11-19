@@ -27,10 +27,10 @@ const CTASection = () => {
             </p>
 
             {/* Contact Cards - Stack on mobile */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-10 sm:mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-10">
               {/* WhatsApp */}
               <div
-                className="group rounded-2xl p-6 sm:p-8 transition-all duration-500 hover:scale-105 active:scale-95"
+                className="group rounded-2xl p-4 sm:p-6 transition-all duration-500 hover:scale-105 active:scale-95 touch-manipulation"
                 style={{
                   background: 'rgba(255, 255, 255, 0.07)',
                   backdropFilter: 'blur(14px)',
@@ -38,25 +38,25 @@ const CTASection = () => {
                   boxShadow: '0 8px 32px rgba(0, 0, 0, 0.15)',
                 }}
               >
-                <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-green-400 to-emerald-500 rounded-xl flex items-center justify-center mx-auto mb-4 sm:mb-5 shadow-lg group-hover:scale-110 transition-transform">
-                  <MessageCircle className="text-white" size={24} />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-green-400 to-emerald-500 rounded-xl flex items-center justify-center mx-auto mb-3 sm:mb-4 shadow-lg group-hover:scale-110 transition-transform">
+                  <MessageCircle className="text-white" size={20} />
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold mb-1.5 sm:mb-2" style={{ color: '#FFFFFF' }}>Chat on WhatsApp</h3>
-                <p className="text-xs sm:text-sm mb-4 sm:mb-5 opacity-80" style={{ color: '#E2E8F0' }}>Instant reply • 24/7</p>
+                <h3 className="text-base sm:text-lg font-bold mb-1.5" style={{ color: '#FFFFFF' }}>Chat on WhatsApp</h3>
+                <p className="text-xs mb-3 opacity-80" style={{ color: '#E2E8F0' }}>Instant reply • 24/7</p>
                 <a
                   href="https://wa.me/8438829844"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full bg-green-500 hover:bg-green-400 active:bg-green-600 text-white py-3.5 rounded-lg font-semibold text-sm transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2 min-h-12"
+                  className="w-full bg-green-500 hover:bg-green-400 active:bg-green-600 text-white py-3 rounded-lg font-semibold text-sm transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2 min-h-10 touch-manipulation"
                 >
                   Start Chat
-                  <ArrowRight size={16} />
+                  <ArrowRight size={14} />
                 </a>
               </div>
 
               {/* Call – Hero Card (Centered on mobile) */}
               <div
-                className="group rounded-2xl p-6 sm:p-8 md:p-10 transition-all duration-700 hover:scale-110 active:scale-105 shadow-2xl relative overflow-hidden order-first md:order-none"
+                className="group rounded-2xl p-4 sm:p-6 transition-all duration-700 hover:scale-110 active:scale-105 shadow-2xl relative overflow-hidden order-first md:order-none touch-manipulation"
                 style={{
                   background: 'rgba(192, 132, 252, 0.12)',
                   backdropFilter: 'blur(16px)',
@@ -68,24 +68,24 @@ const CTASection = () => {
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#C084FC] to-[#A855F7] opacity-70"></div>
 
                 <div className="relative">
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-[#C084FC] to-[#A855F7] rounded-xl flex items-center justify-center mx-auto mb-4 sm:mb-5 shadow-2xl shadow-purple-500/40">
-                    <Phone className="text-white" size={26} />
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-[#C084FC] to-[#A855F7] rounded-xl flex items-center justify-center mx-auto mb-3 sm:mb-4 shadow-2xl shadow-purple-500/40">
+                    <Phone className="text-white" size={22} />
                   </div>
-                  <h3 className="text-lg sm:text-xl font-bold mb-1.5 sm:mb-2" style={{ color: '#FFFFFF' }}>Call Us Directly</h3>
-                  <p className="text-base sm:text-lg font-bold mb-5 sm:mb-6" style={{ color: '#E0AAFF' }}>+91 8438829844</p>
+                  <h3 className="text-base sm:text-lg font-bold mb-1.5" style={{ color: '#FFFFFF' }}>Call Us Directly</h3>
+                  <p className="text-sm font-bold mb-4" style={{ color: '#E0AAFF' }}>+91 8438829844</p>
                   <a
                     href="tel:+91 8438829844"
-                    className="w-full bg-gradient-to-r from-[#C084FC] to-[#A855F7] hover:from-[#D8B4FE] hover:to-[#C084FC] active:from-[#B197FC] active:to-[#A855F7] text-white py-3.5 rounded-lg font-bold text-sm transition-all shadow-xl hover:shadow-2xl hover:shadow-purple-500/50 flex items-center justify-center gap-2 backdrop-blur-sm min-h-12"
+                    className="w-full bg-gradient-to-r from-[#C084FC] to-[#A855F7] hover:from-[#D8B4FE] hover:to-[#A855F7] active:from-[#B197FC] active:to-[#A855F7] text-white py-3 rounded-lg font-bold text-sm transition-all shadow-xl hover:shadow-2xl hover:shadow-purple-500/50 flex items-center justify-center gap-2 backdrop-blur-sm min-h-10 touch-manipulation"
                   >
                     Call Now
-                    <Phone size={16} className="animate-pulse" />
+                    <Phone size={14} className="animate-pulse" />
                   </a>
                 </div>
               </div>
 
               {/* Email */}
               <div
-                className="group rounded-2xl p-6 sm:p-8 transition-all duration-500 hover:scale-105 active:scale-95"
+                className="group rounded-2xl p-4 sm:p-6 transition-all duration-500 hover:scale-105 active:scale-95 touch-manipulation"
                 style={{
                   background: 'rgba(255, 255, 255, 0.07)',
                   backdropFilter: 'blur(14px)',
@@ -93,17 +93,17 @@ const CTASection = () => {
                   boxShadow: '0 8px 32px rgba(0, 0, 0, 0.15)',
                 }}
               >
-                <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-[#C084FC] to-[#A855F7] rounded-xl flex items-center justify-center mx-auto mb-4 sm:mb-5 shadow-lg group-hover:scale-110 transition-transform">
-                  <Mail className="text-white" size={24} />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-[#C084FC] to-[#A855F7] rounded-xl flex items-center justify-center mx-auto mb-3 sm:mb-4 shadow-lg group-hover:scale-110 transition-transform">
+                  <Mail className="text-white" size={20} />
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold mb-1.5 sm:mb-2" style={{ color: '#FFFFFF' }}>Email Us</h3>
-                <p className="text-xs sm:text-sm mb-4 sm:mb-5 opacity-80" style={{ color: '#E2E8F0' }}>Response in 1 hour</p>
+                <h3 className="text-base sm:text-lg font-bold mb-1.5" style={{ color: '#FFFFFF' }}>Email Us</h3>
+                <p className="text-xs mb-3 opacity-80" style={{ color: '#E2E8F0' }}>Response in 1 hour</p>
                 <a
                   href="mailto:info@ecronx.com"
-                  className="w-full bg-gradient-to-r from-[#C084FC] to-[#A855F7] hover:from-[#D8B4FE] hover:to-[#C084FC] active:from-[#B197FC] active:to-[#A855F7] text-white py-3.5 rounded-lg font-semibold text-sm transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 backdrop-blur-sm min-h-12"
+                  className="w-full bg-gradient-to-r from-[#C084FC] to-[#A855F7] hover:from-[#D8B4FE] hover:to-[#A855F7] active:from-[#B197FC] active:to-[#A855F7] text-white py-3 rounded-lg font-semibold text-sm transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 backdrop-blur-sm min-h-10 touch-manipulation"
                 >
                   Send Email
-                  <ArrowRight size={16} />
+                  <ArrowRight size={14} />
                 </a>
               </div>
             </div>
