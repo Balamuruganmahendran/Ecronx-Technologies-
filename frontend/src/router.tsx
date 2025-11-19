@@ -65,7 +65,7 @@ export const routes: Route[] = [
   { path: '/products', element: <Products /> },
   { path: '/careers', element: <Careers /> },
   { path: '/contact', element: <Contact /> },
-  { path: '/apply', element: <GetInfo /> },
+  { path: '/getinfo', element: <GetInfo /> },
 ];
 
 export const RouteWrapper = ({ children }: { children: React.ReactNode }) => (

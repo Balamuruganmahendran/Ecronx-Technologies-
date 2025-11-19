@@ -15,14 +15,23 @@ const GetInfo = ({ jobTitle = "Software Engineer", onBack }: GetInfoProps) => {
 
   // Get job details from navigation state
   const jobDetails = location.state as {
-    jobTitle?: string;
-    jobLocation?: string;
-    jobType?: string;
-    jobDepartment?: string;
+    position?: {
+      title: string;
+      location?: string;
+      type?: string;
+      department?: string;
+    };
+    positionType?: string;
   } | null;
 
-  // Use job title from state if available, otherwise use prop
-  const displayJobTitle = jobDetails?.jobTitle || jobTitle;
+  // State for display job title to handle route changes
+  const [displayJobTitle, setDisplayJobTitle] = useState(jobTitle);
+
+  // Update display title when location changes
+  useEffect(() => {
+    const title = jobDetails?.position?.title || jobTitle;
+    setDisplayJobTitle(title);
+  }, [location, jobDetails, jobTitle]);
 
   // Handle back navigation
   const handleBack = () => {
