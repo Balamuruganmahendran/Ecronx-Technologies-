@@ -1,6 +1,5 @@
 import DefaultLayout from '../../layouts/DefaultLayout';
-import { Target, Eye, Award, Users, Lightbulb, TrendingUp, Globe, Shield, Heart, Zap, BookOpen, Rocket, ArrowRight, CheckCircle, Sparkles, Telescope, Star, Crown, Mountain } from 'lucide-react';
-import Card from '../../components/Card';
+import { Eye, Users, Lightbulb, TrendingUp, Globe, Zap, Rocket, ArrowRight, CheckCircle, Star, Crown, Mountain } from 'lucide-react';
 
 const Vision = () => {
   const visionElements = [
@@ -131,7 +130,7 @@ const Vision = () => {
         </div>
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full mb-6">
-            <Telescope className="w-4 h-4" />
+            <Eye className="w-4 h-4" />
             <span className="text-sm font-medium">Looking Ahead</span>
           </div>
           <h1 className="text-6xl font-bold text-white mb-6 leading-tight">Our Vision</h1>
@@ -312,57 +311,9 @@ const Vision = () => {
           </div>
         </div>
       </section>
-
-      {/* CTA Section */}
-      <section className="relative overflow-hidden">
-        <div className="grid lg:grid-cols-2">
-          <div className="bg-gradient-to-br from-purple-600 to-purple-800 py-20 px-8 lg:px-16 flex items-center">
-            <div>
-              <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-                Shape the Future With Us
-              </h2>
-              <p className="text-xl text-purple-100 mb-8 leading-relaxed">
-                Join our vision to transform industries and create a better future through innovative technology solutions.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <button className="bg-white text-purple-600 px-8 py-4 rounded-xl font-semibold hover:bg-purple-50 transition-colors flex items-center justify-center gap-2">
-                  Join Our Vision <ArrowRight className="w-5 h-5" />
-                </button>
-                <button className="bg-transparent text-white px-8 py-4 rounded-xl font-semibold border-2 border-white hover:bg-white/10 transition-colors">
-                  Learn More
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="bg-gradient-to-br from-indigo-600 to-blue-800 py-20 px-8 lg:px-16 flex items-center">
-            <div>
-              <div className="grid grid-cols-2 gap-6">
-                <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
-                  <Mountain className="w-10 h-10 text-white mb-3" />
-                  <div className="text-3xl font-bold text-white mb-1">#1</div>
-                  <div className="text-indigo-200">Global Leader</div>
-                </div>
-                <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
-                  <Globe className="w-10 h-10 text-white mb-3" />
-                  <div className="text-3xl font-bold text-white mb-1">100+</div>
-                  <div className="text-indigo-200">Countries</div>
-                </div>
-                <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
-                  <TrendingUp className="w-10 h-10 text-white mb-3" />
-                  <div className="text-3xl font-bold text-white mb-1">100K+</div>
-                  <div className="text-indigo-200">Clients</div>
-                </div>
-                <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
-                  <Star className="w-10 h-10 text-white mb-3" />
-                  <div className="text-3xl font-bold text-white mb-1">Vision</div>
-                  <div className="text-indigo-200">2030</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </DefaultLayout>
   );
 };
+
+export default Vision;
 

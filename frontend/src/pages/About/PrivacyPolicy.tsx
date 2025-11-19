@@ -138,7 +138,7 @@ const PrivacyPolicy = () => {
           <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-blue-600">
             <div className="flex items-center gap-3">
               <Info className="w-5 h-5 text-blue-600" />
-              <span className="text-gray-600">Last updated: December 2024</span>
+              <span className="text-gray-600">Last updated: January 2025</span>
             </div>
           </div>
         </div>

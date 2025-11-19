@@ -262,56 +262,6 @@ const AboutEcronx = () => {
           </div>
         </div>
       </section>
-
-      {/* CTA Section - Split Design */}
-      <section className="relative overflow-hidden">
-        <div className="grid lg:grid-cols-2">
-          <div className="bg-gradient-to-br from-blue-600 to-blue-800 py-20 px-8 lg:px-16 flex items-center">
-            <div>
-              <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-                Ready to Transform Your Business?
-              </h2>
-              <p className="text-xl text-blue-100 mb-8 leading-relaxed">
-                Join thousands of businesses that trust us to deliver innovative solutions and drive their success.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <button className="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-colors flex items-center justify-center gap-2">
-                  Get Started <ArrowRight className="w-5 h-5" />
-                </button>
-                <button className="bg-transparent text-white px-8 py-4 rounded-xl font-semibold border-2 border-white hover:bg-white/10 transition-colors">
-                  Contact Us
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="bg-gradient-to-br from-purple-600 to-indigo-800 py-20 px-8 lg:px-16 flex items-center">
-            <div>
-              <div className="grid grid-cols-2 gap-6">
-                <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
-                  <Globe className="w-10 h-10 text-white mb-3" />
-                  <div className="text-3xl font-bold text-white mb-1">50+</div>
-                  <div className="text-purple-200">Countries</div>
-                </div>
-                <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
-                  <TrendingUp className="w-10 h-10 text-white mb-3" />
-                  <div className="text-3xl font-bold text-white mb-1">98%</div>
-                  <div className="text-purple-200">Satisfaction</div>
-                </div>
-                <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
-                  <Rocket className="w-10 h-10 text-white mb-3" />
-                  <div className="text-3xl font-bold text-white mb-1">500+</div>
-                  <div className="text-purple-200">Projects</div>
-                </div>
-                <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
-                  <Award className="w-10 h-10 text-white mb-3" />
-                  <div className="text-3xl font-bold text-white mb-1">15+</div>
-                  <div className="text-purple-200">Awards</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </DefaultLayout>
   );
 };
