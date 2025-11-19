@@ -4,11 +4,12 @@ import { useState } from 'react';
 const Navbar = ({ onGetStartedClick }: { onGetStartedClick?: () => void }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isAboutDropdownOpen, setIsAboutDropdownOpen] = useState(false);
+  const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
 
   const navLinks = [
     { name: 'Home', path: '/' },
     {
-      name: 'About',
+      name: 'Company',
       path: '/about',
       hasDropdown: true,
       dropdownItems: [
@@ -35,6 +36,10 @@ const Navbar = ({ onGetStartedClick }: { onGetStartedClick?: () => void }) => {
     setIsAboutDropdownOpen(!isAboutDropdownOpen);
   };
 
+  const handleServicesClick = () => {
+    setIsServicesDropdownOpen(!isServicesDropdownOpen);
+  };
+
   const handleDropdownItemClick = (path: string) => {
     setIsAboutDropdownOpen(false);
     setIsOpen(false);
@@ -58,15 +63,15 @@ const Navbar = ({ onGetStartedClick }: { onGetStartedClick?: () => void }) => {
                 {link.hasDropdown ? (
                   <div
                     className="relative"
-                    onMouseEnter={() => setIsAboutDropdownOpen(true)}
-                    onMouseLeave={() => setIsAboutDropdownOpen(false)}
+                    onMouseEnter={() => link.name === 'Company' ? setIsAboutDropdownOpen(true) : link.name === 'Services' ? setIsServicesDropdownOpen(true) : null}
+                    onMouseLeave={() => link.name === 'Company' ? setIsAboutDropdownOpen(false) : link.name === 'Services' ? setIsServicesDropdownOpen(false) : null}
                   >
                     <div className="relative px-4 py-2 text-gray-700 hover:text-gray-900 font-medium transition-all duration-300 group cursor-pointer">
                       <span className="relative z-10">{link.name}</span>
                       <span className="absolute inset-0 bg-gradient-to-r from-blue-50/0 via-cyan-50/0 to-teal-50/0 group-hover:from-blue-50 group-hover:via-cyan-50 group-hover:to-teal-50 rounded-lg transition-all duration-300"></span>
                       <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-blue-600 via-cyan-600 to-teal-600 group-hover:w-full transition-all duration-300"></span>
                     </div>
-                    {isAboutDropdownOpen && (
+                    {(link.name === 'Company' && isAboutDropdownOpen) || (link.name === 'Services' && isServicesDropdownOpen) ? (
                       <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50">
                         {link.dropdownItems?.map((item) => (
                           <button
@@ -78,7 +83,7 @@ const Navbar = ({ onGetStartedClick }: { onGetStartedClick?: () => void }) => {
                           </button>
                         ))}
                       </div>
-                    )}
+                    ) : null}
                   </div>
                 ) : (
                   <a
@@ -124,7 +129,7 @@ const Navbar = ({ onGetStartedClick }: { onGetStartedClick?: () => void }) => {
                 {link.hasDropdown ? (
                   <div>
                     <button
-                      onClick={handleAboutClick}
+                      onClick={link.name === 'Company' ? handleAboutClick : link.name === 'Services' ? handleServicesClick : () => {}}
                       className="w-full text-left px-4 py-3 rounded-lg text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:via-cyan-50 hover:to-teal-50 hover:text-gray-900 font-medium transition-all duration-200"
                       style={{
                         animation: isOpen ? `slideIn 0.3s ease-out ${index * 0.05}s both` : 'none'
@@ -132,7 +137,7 @@ const Navbar = ({ onGetStartedClick }: { onGetStartedClick?: () => void }) => {
                     >
                       {link.name}
                     </button>
-                    {isAboutDropdownOpen && (
+                    {((link.name === 'Company' && isAboutDropdownOpen) || (link.name === 'Services' && isServicesDropdownOpen)) && (
                       <div className="ml-4 mt-2 space-y-1">
                         {link.dropdownItems?.map((item, itemIndex) => (
                           <button
