@@ -267,50 +267,6 @@ const Vision = () => {
           </div>
         </div>
       </section>
-
-      {/* Roadmap */}
-      <section className="py-24 px-4 bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%), linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%)',
-            backgroundSize: '60px 60px',
-            backgroundPosition: '0 0, 30px 30px'
-          }}></div>
-        </div>
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-4">Our Roadmap to Vision 2030</h2>
-            <p className="text-xl text-purple-200">Strategic phases to achieve our ambitious vision</p>
-          </div>
-
-          <div className="space-y-8">
-            {roadmap.map((phase, index) => (
-              <div key={index} className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
-                <div className="flex flex-col lg:flex-row lg:items-center gap-6">
-                  <div className="lg:w-1/4">
-                    <div className="text-purple-300 font-semibold mb-2">{phase.phase}</div>
-                    <h3 className="text-2xl font-bold text-white">{phase.title}</h3>
-                  </div>
-                  <div className="lg:w-1/2">
-                    <p className="text-purple-100 leading-relaxed">{phase.description}</p>
-                  </div>
-                  <div className="lg:w-1/4">
-                    <h4 className="text-white font-semibold mb-3">Key Milestones:</h4>
-                    <ul className="space-y-2">
-                      {phase.milestones.map((milestone, idx) => (
-                        <li key={idx} className="flex items-center gap-2 text-purple-200 text-sm">
-                          <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0" />
-                          {milestone}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
     </DefaultLayout>
   );
 };

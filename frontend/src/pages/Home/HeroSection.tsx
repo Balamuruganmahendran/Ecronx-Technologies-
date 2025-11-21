@@ -578,11 +578,6 @@ export default function LandingPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-center">
               {/* LEFT */}
               <div className="space-y-6 sm:space-y-8">
-                <div className="inline-flex items-center gap-2 bg-teal-500/20 backdrop-blur-sm border border-teal-500/30 rounded-full px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium text-teal-400">
-                  <Sparkles size={14} className="animate-pulse" />
-                  <span className="hidden xs:inline">Trusted by </span>500+ Businesses
-                </div>
-
                 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
                   <span className="text-slate-100">Building innovative </span>
                   <span
@@ -615,15 +610,6 @@ export default function LandingPage() {
                 </div>
 
                 <div className="grid grid-cols-3 gap-4 pt-6 sm:pt-8 border-t border-slate-700">
-                  <div className="text-center sm:text-left">
-                    <div className="flex items-center justify-center sm:justify-start gap-1.5 text-xl sm:text-2xl font-bold mb-1 text-slate-100">
-                      <TrendingUp size={18} className="text-teal-500" />
-                      4+
-                    </div>
-                    <div className="text-xs sm:text-sm text-slate-400">
-                      Years Experience
-                    </div>
-                  </div>
                   <div className="text-center">
                     <div className="flex items-center justify-center gap-1.5 text-xl sm:text-2xl font-bold mb-1 text-slate-100">
                       <Users size={18} className="text-teal-500" />
